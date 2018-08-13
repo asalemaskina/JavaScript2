@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<button onclick="vitek.stop()"> STOOOOOP</button>
+<script>
+    // ДЗ
+    // добавить зерна
+    // проверку на пустую кофеварку
+    // реализовать метод стоп для кофеварки
+
+    function CoffeeMachine(power) {
+      var waterAmount = 0;
+      var beansAmount= 0;
+      var maxTemp = 90;
+      var waterHeatCapacity = 4200;
+        this.isEmpty = function () {
+            if ((waterAmount < 50)|| (beansAmount<1))
+            {
+
+                if (waterAmount < 50) {
+                    console.error('Добавьте воду!');
+                }
+                if (beansAmount < 1) {
+                    console.error("Добавьте зёрна!");
+                }
+                return true;
+            }
+            else return false;
+        };
+      this.addWater = function (newAmount) {
+        if (newAmount >= 50) {
+          waterAmount += newAmount
+        } else {
+          console.error('Слишком мало воды!');
+        }
+      };
+      this.addBeans = function (newBeans) {
+          if (newBeans>=5){
+              beansAmount+= newBeans;
+          } else console.error("Слишком мало зерен!");
+      }
+
+      var calcBoilTime = function () {
+        return (waterAmount * waterHeatCapacity * maxTemp) / power;
+      };
+
+      this.getBoilTime = function() {
+        return calcBoilTime();
+      };
+
+      this.launch = function () {
+          if (!(this.isEmpty())) {
+              console.log("Кофе готовится");
+              var t= setTimeout(function () {
+                  console.log('Кофе готов!')
+              }, calcBoilTime());
+          }
+          this.stop= function () {
+              console.log("Кофеварка выключена");
+              clearTimeout(t);
+          }
+      }
+
+    }
+
+    var vitek = new CoffeeMachine(3500);
+    vitek.addWater(50);
+    vitek.addBeans(10);
+    vitek.launch();
+</script>
+</body>
+</html>
