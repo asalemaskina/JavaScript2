@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    input:invalid  {
+        border: 2px solid red;
+    }
+</style>
+<body>
+<form action="post">
+    <label for="name">Ваше имя<input type="text" id="name" pattern="/[a-zA-Z]+)/"></label>
+    <label for="phone">Ваш телефон<input type="tel" id="phone" pattern="^((\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{10}$"></label>
+    <label for="email">Ваш email<input type="email" id="email" pattern="/[a-zA-Z0-9-._]+)(@)([a-zA-Z0-9-_]+)\.([a-z]{2,}/"></label>
+    <label for="text">Ваш отзыв<input type="text" id="text" pattern="/[a-zA-Z]+)/"></label>
+    <input type="submit">
+</form>
+</body>
+</html>
